@@ -1,0 +1,14 @@
+#!/usr/bin/env python3
+import urllib
+body = urllib.parse.parse_qs(input())
+if body["operator"] == "+":
+    ans = body["before"] + body["after"]
+if body["operator"] == "-":
+    ans = body["before"] - body["after"]
+if body["operator"] == "*":
+    ans = body["before"] * body["after"]
+if body["operator"] == "/":
+    ans = body["before"] / body["after"]
+print("Content-Type: text/plain; charset=utf-8")
+print()
+print(ans)
