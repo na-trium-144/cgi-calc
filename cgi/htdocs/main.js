@@ -1,10 +1,10 @@
 let ans = 0;
 let operator = "";
 let current = "";
-function updateInfo(){
-  document.getElementById('ans').textContent = ans;
-  document.getElementById('op').textContent = operator;
-  document.getElementById('cur').textContent = current;
+function updateInfo() {
+  document.getElementById("ans").textContent = ans;
+  document.getElementById("op").textContent = operator;
+  document.getElementById("cur").textContent = current;
 }
 function press(n) {
   current += n;
@@ -19,7 +19,12 @@ async function calc() {
   } else {
     ans = parseFloat(
       await (
-        await fetch(`/cgi-bin/calc?before=${ans}&operator=${encodeURIComponent(operator)}&after=${current}`)
+        await fetch("/cgi-bin/calc", {
+          method: "post",
+          body: `before=${ans}&operator=${encodeURIComponent(
+            operator
+          )}&after=${current}`,
+        })
       ).text()
     );
   }
